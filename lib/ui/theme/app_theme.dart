@@ -14,11 +14,13 @@ class AppTheme {
 
   ThemeData light() {
     final colors = _lightColors;
+    const brightness = Brightness.light;
     final textTheme = AppTextTheme(colors: colors);
     return ThemeData.light(useMaterial3: true).copyWith(
       textTheme: textTheme,
+      brightness: brightness,
       scaffoldBackgroundColor: colors.surface,
-      colorScheme: _getColorScheme(Brightness.light),
+      colorScheme: _getColorScheme(brightness),
       appBarTheme: AppBarTheme(
         elevation: 0,
         backgroundColor: colors.surface,
@@ -33,11 +35,13 @@ class AppTheme {
 
   ThemeData dark() {
     final colors = _darkColors;
+    const brightness = Brightness.dark;
     final textTheme = AppTextTheme(colors: colors);
     return ThemeData.dark(useMaterial3: true).copyWith(
       textTheme: textTheme,
+      brightness: brightness,
       scaffoldBackgroundColor: colors.surface,
-      colorScheme: _getColorScheme(Brightness.dark),
+      colorScheme: _getColorScheme(brightness),
       appBarTheme: AppBarTheme(
         elevation: 0,
         backgroundColor: colors.surface,

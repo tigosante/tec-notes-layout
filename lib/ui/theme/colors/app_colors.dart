@@ -4,7 +4,7 @@ abstract class AppColors {
   AppColors();
 
   final MaterialColor red = const MaterialColor(0xFFB00020, <int, Color>{});
-  final MaterialColor blue = const MaterialColor(0xFF176ece, <int, Color>{});
+  final MaterialColor blue = const MaterialColor(0xFF6ebae6, <int, Color>{});
   final MaterialColor white = const MaterialColor(0xFFffffff, <int, Color>{});
 
   final MaterialColor lighterGrey =
@@ -56,7 +56,7 @@ class _AppColorsLight extends AppColors {
   MaterialColor get onError => red;
 
   @override
-  MaterialColor get primary => black87;
+  MaterialColor get primary => blue;
 
   @override
   MaterialColor get onPrimary => lighterGrey;

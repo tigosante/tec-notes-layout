@@ -17,6 +17,13 @@ class AppRouterImpl implements AppRouter {
   }
 
   @override
+  void replace(AppRouterEnum route) {
+    _provider
+      ..popUntil((_) => false)
+      ..pushReplacementNamed(route.routePath);
+  }
+
+  @override
   void navigate(AppRouterEnum route, {Map<String, dynamic>? params}) {
     try {
       final pathParams = route.getParams(params) ?? '';

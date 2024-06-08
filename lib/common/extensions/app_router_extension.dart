@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:tec_notes_layout/common/common.dart' show AppRouterEnum;
 
 extension AppRouterExtension on AppRouterEnum {
+  String get routePath {
+    return switch (this) { AppRouterEnum.root => path, _ => '/$path' };
+  }
+
   String? getParams([Map<String, dynamic>? data]) {
     final hasData = data?.isNotEmpty ?? false;
     final pathParams = params?.params;
