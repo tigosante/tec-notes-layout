@@ -3,6 +3,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart' show EvaIcons;
 import 'package:flutter/material.dart';
 
 enum IconButtonType {
+  help,
   openEye,
   closeEye,
   apple,
@@ -11,6 +12,7 @@ enum IconButtonType {
 
   IconData get getIcon {
     return switch (this) {
+      IconButtonType.help => Icons.help_outline,
       IconButtonType.openEye => EneftyIcons.eye_outline,
       IconButtonType.closeEye => EneftyIcons.eye_slash_outline,
       IconButtonType.apple => Icons.apple,
@@ -42,6 +44,23 @@ class IconButtonWidget extends StatelessWidget {
   final double? _buttonSize;
   final Color? _iconColor;
   final Color? _backgroundColor;
+
+  factory IconButtonWidget.help({
+    required VoidCallback onPressed,
+    Color? iconColor,
+    double? iconSize,
+    double? buttonSize,
+    Color? backgroundColor,
+  }) {
+    return IconButtonWidget(
+      iconSize: iconSize,
+      buttonSize: buttonSize,
+      onPressed: onPressed,
+      iconColor: iconColor,
+      icon: IconButtonType.help,
+      backgroundColor: backgroundColor,
+    );
+  }
 
   factory IconButtonWidget.openEye({
     required VoidCallback onPressed,

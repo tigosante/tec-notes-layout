@@ -18,60 +18,70 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  void initState() {
+    super.initState();
+    if (mounted) {
+      context.dismissKeyboard();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BodyDefault(
-        copyWith: EdgeInsets.only(top: context.dimensions.paddingExtraLarge),
-        child: SafeArea(
-          child: Column(
-            children: [
-              ImagesWidget.logo(),
-              SizedBox(height: context.dimensions.paddingMedium),
-              Container(
-                alignment: Alignment.center,
-                clipBehavior: Clip.antiAlias,
-                padding: EdgeInsets.all(context.dimensions.paddingExtraLarge),
-                decoration: BoxDecoration(
-                  color: context.colors.surface,
-                  borderRadius: BorderRadius.circular(
-                    context.dimensions.borderRadiusLarge,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: context.colors.secondary,
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          FloatingIconWidget(
+            children: ['check', 'anotar', 'lembrar']
+                .map<Widget>(
+                  (text) => TextWidget(
+                    text,
+                    style: context.textTheme.bodySmall
+                        .copyWith(color: context.colors.onPrimary),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 20,
-                      spreadRadius: 0.5,
-                      offset: const Offset(1, 3),
-                      color: context.colors.black87.withOpacity(0.10),
-                    ),
-                  ],
-                ),
+                )
+                .toList()
+              ..add(IconsWidget.pen(color: context.colors.onPrimary)),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              height: context.appSize.height * 0.8,
+              child: RoundedCardWidget(
                 child: Column(
                   children: [
-                    const LoginFieldsWidget(),
-                    SizedBox(height: context.dimensions.paddingExtraLarge),
-                    LoginActionButtonsWidget(
-                      onLogin: () => widget._navigate(AppRouterEnum.home),
-                      onRegister: () {},
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: context.dimensions.paddingSmall,
+                        right: context.dimensions.paddingSmall,
+                      ),
+                      alignment: Alignment.centerRight,
+                      child: IconButtonWidget.help(onPressed: () {}),
                     ),
-                    SizedBox(height: context.dimensions.paddingLarge),
-                    LoginSocialWidget(
-                      actions: {
-                        IconButtonType.google: () {},
-                        IconButtonType.gitHub: () {},
-                        IconButtonType.apple: () {},
-                      },
-                    ),
-                    SizedBox(height: context.dimensions.paddingLarge),
-                    LoginHelpButtons(
-                      onHelp: () {},
-                      onForgotPassword: () {},
+                    Padding(
+                      padding:
+                          EdgeInsets.all(context.dimensions.paddingExtraLarge)
+                              .copyWith(top: 0),
+                      child: MakeLoginSectionWidget(
+                        onForgotPassword: () {},
+                        onLogin: () => widget._navigate(AppRouterEnum.home),
+                        onRegister: () =>
+                            widget._navigate(AppRouterEnum.register),
+                        socialActions: {
+                          IconButtonType.google: () {},
+                          IconButtonType.gitHub: () {},
+                          IconButtonType.apple: () {},
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

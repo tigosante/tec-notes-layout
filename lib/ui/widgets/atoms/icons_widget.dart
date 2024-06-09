@@ -1,14 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 enum IconType {
-  favorite,
-  favoriteFilled,
-  remove,
-  download,
-  play,
-  pause,
-  playCircle,
-  pauseCircle,
+  pen,
+  paper,
 }
 
 class IconsWidget extends StatelessWidget {
@@ -22,33 +16,11 @@ class IconsWidget extends StatelessWidget {
   final IconType _iconType;
   final Color? _color;
 
-  factory IconsWidget.favorite({
-    required Color colorIfFavorite,
-    required Color colorIfNo,
-    bool isFavorite = false,
-  }) =>
-      IconsWidget(
-        color: isFavorite ? colorIfFavorite : colorIfNo,
-        iconType: isFavorite ? IconType.favoriteFilled : IconType.favorite,
-      );
+  factory IconsWidget.pen({Color? color}) =>
+      IconsWidget(iconType: IconType.pen, color: color);
 
-  factory IconsWidget.remove({Color? color}) =>
-      IconsWidget(iconType: IconType.remove, color: color);
-
-  factory IconsWidget.download({Color? color}) =>
-      IconsWidget(iconType: IconType.download, color: color);
-
-  factory IconsWidget.play({Color? color}) =>
-      IconsWidget(iconType: IconType.play, color: color);
-
-  factory IconsWidget.pause({Color? color}) =>
-      IconsWidget(iconType: IconType.pause, color: color);
-
-  factory IconsWidget.playCircle({Color? color}) =>
-      IconsWidget(iconType: IconType.playCircle, color: color);
-
-  factory IconsWidget.pauseCircle({Color? color}) =>
-      IconsWidget(iconType: IconType.pauseCircle, color: color);
+  factory IconsWidget.paper({Color? color}) =>
+      IconsWidget(iconType: IconType.paper, color: color);
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +31,8 @@ class IconsWidget extends StatelessWidget {
 extension _IconTypeExtension on IconType {
   IconData get iconData {
     return switch (this) {
-      IconType.favorite => CupertinoIcons.heart,
-      IconType.favoriteFilled => CupertinoIcons.heart_fill,
-      IconType.remove => CupertinoIcons.trash,
-      IconType.download => CupertinoIcons.cloud_download,
-      IconType.play => CupertinoIcons.play,
-      IconType.pause => CupertinoIcons.pause,
-      IconType.playCircle => CupertinoIcons.play_circle,
-      IconType.pauseCircle => CupertinoIcons.pause_circle,
+      IconType.pen => CupertinoIcons.pen,
+      IconType.paper => CupertinoIcons.square_list,
     };
   }
 }

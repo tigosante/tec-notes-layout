@@ -5,19 +5,22 @@ import 'package:tec_notes_layout/features/auth/widgets/widgets.dart';
 class BaseInputWidget extends StatefulWidget {
   const BaseInputWidget({
     required String labelText,
+    required bool obscureText,
+    required TextInputType keyboardType,
     required TextEditingController controller,
-    bool obscureText = false,
-    void Function()? onEditingComplete,
+    required void Function() onEditingComplete,
     super.key,
   })  : _labelText = labelText,
         _controller = controller,
         _obscureText = obscureText,
+        _keyboardType = keyboardType,
         _onEditingComplete = onEditingComplete;
 
   final String _labelText;
   final bool _obscureText;
+  final TextInputType _keyboardType;
   final TextEditingController _controller;
-  final void Function()? _onEditingComplete;
+  final void Function() _onEditingComplete;
 
   @override
   State<BaseInputWidget> createState() => _BaseInputWidgetState();
@@ -41,12 +44,23 @@ class _BaseInputWidgetState extends State<BaseInputWidget> {
     return TextField(
       obscureText: _isHiddenText,
       controller: widget._controller,
+      keyboardType: widget._keyboardType,
       onEditingComplete: widget._onEditingComplete,
-      style: textTheme.bodyMedium
+      style: textTheme.bodyLarge
           .copyWith(fontWeight: fontWeight, color: context.colors.secondary),
       decoration: InputDecoration(
-        labelText: widget._labelText,
-        labelStyle: textTheme.titleSmall.copyWith(fontWeight: fontWeight),
+        filled: true,
+        hintText: widget._labelText,
+        contentPadding:
+            EdgeInsets.symmetric(horizontal: context.dimensions.paddingMedium),
+        fillColor: context.colors.secondary.withOpacity(0.1),
+        hintStyle: textTheme.bodyLarge
+            .copyWith(fontWeight: fontWeight, color: context.colors.secondary),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius:
+              BorderRadius.circular(context.dimensions.borderRadiusLarge),
+        ),
         suffixIcon: _SuffixIconButtonWidget(
           showText: _showText,
           obscureText: widget._obscureText,

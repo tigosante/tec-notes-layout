@@ -4,11 +4,11 @@ import 'package:tec_notes_layout/features/auth/widgets/widgets.dart';
 
 class PasswordInputWidget extends StatefulWidget {
   const PasswordInputWidget({
+    required void Function(String text) onEditingComplete,
     super.key,
-    void Function()? onEditingComplete,
   }) : _onEditingComplete = onEditingComplete;
 
-  final void Function()? _onEditingComplete;
+  final void Function(String text) _onEditingComplete;
 
   @override
   State<PasswordInputWidget> createState() => _PasswordInputWidgetState();
@@ -35,7 +35,8 @@ class _PasswordInputWidgetState extends State<PasswordInputWidget> {
       labelText: 'Senha',
       obscureText: true,
       controller: _controller,
-      onEditingComplete: widget._onEditingComplete,
+      keyboardType: TextInputType.visiblePassword,
+      onEditingComplete: () => widget._onEditingComplete(_controller.text),
     );
   }
 }

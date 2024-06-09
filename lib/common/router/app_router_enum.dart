@@ -2,7 +2,8 @@ import 'package:tec_notes_layout/common/router/app_router_path_params.dart';
 
 enum AppRouterEnum {
   root(path: '/'),
-  auth(path: 'login'),
+  auth(path: 'auth'),
+  register(path: 'register'),
   home(path: 'home'),
   ;
 

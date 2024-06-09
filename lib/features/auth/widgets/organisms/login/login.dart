@@ -1,3 +1,3 @@
-export 'login_action_buttons_widget.dart';
 export 'login_fields_widget.dart';
-export 'login_social_widget.dart';
+export 'login_register_buttons_widget.dart';
+export 'make_login_section_widget.dart';

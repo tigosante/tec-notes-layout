@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show ThemeExtension;
 import 'package:tec_notes_layout/ui/theme/theme.dart' show AppDimensions;
 
@@ -40,16 +41,16 @@ class AppDimensionsExtension extends ThemeExtension<AppDimensionsExtension>
   double get paddingNone => _dimensions.paddingNone;
 
   @override
-  double get paddingSmall => _dimensions.paddingSmall;
+  double get paddingSmall => _dimensions.paddingSmall.factor;
 
   @override
-  double get paddingMedium => _dimensions.paddingMedium;
+  double get paddingMedium => _dimensions.paddingMedium.factor;
 
   @override
-  double get paddingLarge => _dimensions.paddingLarge;
+  double get paddingLarge => _dimensions.paddingLarge.factor;
 
   @override
-  double get paddingExtraLarge => _dimensions.paddingExtraLarge;
+  double get paddingExtraLarge => _dimensions.paddingExtraLarge.factor;
 
   @override
   ThemeExtension<AppDimensionsExtension> copyWith() {
@@ -63,4 +64,8 @@ class AppDimensionsExtension extends ThemeExtension<AppDimensionsExtension>
   ) {
     return this;
   }
+}
+
+extension on double {
+  double get factor => this * (kIsWeb ? 2 : 1);
 }

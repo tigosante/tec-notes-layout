@@ -62,10 +62,10 @@ class _AppColorsLight extends AppColors {
   MaterialColor get onPrimary => lighterGrey;
 
   @override
-  MaterialColor get secondary => darkGrey;
+  MaterialColor get secondary => black;
 
   @override
-  MaterialColor get onSecondary => black;
+  MaterialColor get onSecondary => white;
 
   @override
   MaterialColor get tertiary => white;

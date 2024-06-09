@@ -3,11 +3,11 @@ import 'package:tec_notes_layout/features/auth/widgets/widgets.dart';
 
 class EmailInputWidget extends StatefulWidget {
   const EmailInputWidget({
+    required void Function() onEditingComplete,
     super.key,
-    void Function()? onEditingComplete,
   }) : _onEditingComplete = onEditingComplete;
 
-  final void Function()? _onEditingComplete;
+  final void Function() _onEditingComplete;
 
   @override
   State<EmailInputWidget> createState() => _EmailInputWidgetState();
@@ -32,7 +32,9 @@ class _EmailInputWidgetState extends State<EmailInputWidget> {
   Widget build(BuildContext context) {
     return BaseInputWidget(
       labelText: 'Email',
+      obscureText: false,
       controller: _controller,
+      keyboardType: TextInputType.emailAddress,
       onEditingComplete: widget._onEditingComplete,
     );
   }

@@ -19,13 +19,15 @@ class SocialButtonsWidget extends StatelessWidget {
           .map(
             (entry) => Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: context.dimensions.paddingSmall,
+                horizontal: context.dimensions.paddingMedium,
               ),
               child: IconButtonWidget(
                 buttonSize: 30,
                 icon: entry.key,
                 onPressed: entry.value,
                 iconSize: entry.key.iconSize,
+                iconColor: context.colors.secondary,
+                backgroundColor: context.colors.primary.withOpacity(0.2),
               ),
             ),
           )
@@ -36,6 +38,6 @@ class SocialButtonsWidget extends StatelessWidget {
 
 extension on IconButtonType {
   double get iconSize {
-    return switch (this) { IconButtonType.apple => 30, _ => 25 };
+    return switch (this) { IconButtonType.apple => 25, _ => 20 };
   }
 }
